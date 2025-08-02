@@ -11,8 +11,9 @@
         function getComputerChoice() {
             const options = ["rock", "paper", "scissor"];
             const randomOption = Math.floor(Math.random() * options.length);
-            console.log("Programm: " + options[randomOption]);
-
+            const choice = options[randomOption];
+            console.log("Programm: " + choice);
+            return choice;
         }
 
         function getHumanChoice() {
@@ -21,31 +22,55 @@
 
             if (choice === "rock" || choice === "paper" || choice === "scissor") {
                 console.log("You: " + choice);
+                return choice;
             } else if (!choice || choice === "") {
                 console.log("Please choose an option");
             } else {
                 console.log("Choose the right thing please..");
             }
-            
+            return null;
         }
 
-        const humanScore = 0;
-        const computerScore = 0;
+        let humanScore = 0;
+        let computerScore = 0;
 
         function playRound(humanChoice, computerChoice) {
-            
+
+            if (humanChoice === computerChoice) {
+                console.log("It's a draw," + " Your score: " + humanScore + " Computer score: " + computerScore);
+
+            } else if ( humanChoice === "rock" && computerChoice === "scissor" ||
+                        humanChoice === "paper" && computerChoice === "rock" ||
+                        humanChoice === "scissor" && computerChoice === "paper")
+
+              { console.log("You win " + humanChoice + " beats " + 
+                            computerChoice + "!" + " / " + "Your score: " + [humanScore += 1])
+                            }
+
+              else { console.log("You lost " + computerChoice + " beats " + 
+                            humanChoice + "!" + " / " + "Computer score: " + [computerScore += 1])
+                        }
+                
         }
-
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
 
         function playGame() {
             for (let i = 0; i < 5; i++) {
-                playRound();
+                const humanSelection = getHumanChoice();
+                const computerSelection = getComputerChoice();
+                if (humanSelection && computerSelection) {
+                    playRound(humanSelection, computerSelection);
+                } else {
+                    console.log("Skipping round due to invalid choice.");
+                }
+            } if (humanScore < computerScore) {
+                console.log("You lost, Computer won. " + "Computer score: " + computerScore)
+            } else if (humanScore > computerScore) {
+                console.log("You won! " + "Your score: " + humanScore)
+            } else if (humanScore === computerScore) {
+                console.log("It's a draw, wanna try again? " + "Your score: " + humanScore + " Computer score: " + computerScore)
             }
-        }
+        } 
+        playGame();
     </script>
 
 </body>
