@@ -3,75 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <script src="js-file.js" defer></script>
 </head>
 <body>
-    
-    <script>
-        function getComputerChoice() {
-            const options = ["rock", "paper", "scissor"];
-            const randomOption = Math.floor(Math.random() * options.length);
-            const choice = options[randomOption];
-            console.log("Programm: " + choice);
-            return choice;
-        }
+    <div class="header">
+        <h2>Welcome to rock, paper or scissor Game!</h2>
+    </div>
+    <div class="main">
+        <p>Choose an option and test your luck!</p>
+    <div class="buttons"> 
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissor">Scissor</button>
+    </div>
 
-        function getHumanChoice() {
-            const humanChoice = prompt("Choose an option: Rock, Paper or Scissor!");
-            const choice = humanChoice.toLowerCase();
-
-            if (choice === "rock" || choice === "paper" || choice === "scissor") {
-                console.log("You: " + choice);
-                return choice;
-            } else if (!choice || choice === "") {
-                console.log("Please choose an option");
-            } else {
-                console.log("Choose the right thing please..");
-            }
-            return null;
-        }
-
-        let humanScore = 0;
-        let computerScore = 0;
-
-        function playRound(humanChoice, computerChoice) {
-
-            if (humanChoice === computerChoice) {
-                console.log("It's a draw," + " Your score: " + humanScore + " Computer score: " + computerScore);
-
-            } else if ( humanChoice === "rock" && computerChoice === "scissor" ||
-                        humanChoice === "paper" && computerChoice === "rock" ||
-                        humanChoice === "scissor" && computerChoice === "paper")
-
-              { console.log("You win " + humanChoice + " beats " + 
-                            computerChoice + "!" + " / " + "Your score: " + [humanScore += 1])
-                            }
-
-              else { console.log("You lost " + computerChoice + " beats " + 
-                            humanChoice + "!" + " / " + "Computer score: " + [computerScore += 1])
-                        }
-                
-        }
-
-        function playGame() {
-            for (let i = 0; i < 5; i++) {
-                const humanSelection = getHumanChoice();
-                const computerSelection = getComputerChoice();
-                if (humanSelection && computerSelection) {
-                    playRound(humanSelection, computerSelection);
-                } else {
-                    console.log("Skipping round due to invalid choice.");
-                }
-            } if (humanScore < computerScore) {
-                console.log("You lost, Computer won. " + "Computer score: " + computerScore)
-            } else if (humanScore > computerScore) {
-                console.log("You won! " + "Your score: " + humanScore)
-            } else if (humanScore === computerScore) {
-                console.log("It's a draw, wanna try again? " + "Your score: " + humanScore + " Computer score: " + computerScore)
-            }
-        } 
-        playGame();
-    </script>
-
+    <div class="computerchoice">
+        <div class="comp">
+        <p>Computer chose: </p>
+    </div>
+    </div>
+</div>
+    <div class="scoreboard">
+        <h1 id="player-score">Player: </h1>
+        <h1>vs</h1>
+        <h1 id="computer-score">Computer: </h1>
+    </div>
+    <div class="winnerboard">
+        <h1>Winner: </h1>
+    </div>
 </body>
 </html>
